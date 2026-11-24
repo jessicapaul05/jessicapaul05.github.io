@@ -130,9 +130,28 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 @media(max-width:760px){.strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;align-items:stretch;padding-bottom:6px;scrollbar-width:none}.strip figure{flex:0 0 64vw;scroll-snap-align:center}.strip .a,.strip .b,.strip .c{aspect-ratio:3/4}.strip .c{order:-1}}
 @media(max-width:600px){.nl a:not(.book){padding:10px 7px}.svc{grid-template-columns:minmax(0,1fr)}.stats dd{font-size:16px}.ph-grid{column-gap:10px}.ph{margin-bottom:10px}.ph span{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tick div{animation:none}.ph img{transition:none}}
+
+.prog{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0);z-index:40}
+.mast span i{display:inline-block;font-style:normal;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:translateY(40%);opacity:0}to{transform:none;opacity:1}}
+.strip figure{cursor:zoom-in;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.strip figure img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.idx a.on{color:#fff;background:var(--red);border-color:var(--red)}
+.ph.in{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{transform:translateY(28px)}to{transform:none}}
+.cur{position:fixed;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--red);color:#fff;font:700 13px Manrope,sans-serif;display:grid;place-items:center;pointer-events:none;z-index:55;transform:scale(0);transition:transform .25s ease;mix-blend-mode:normal}
+.cur.on{transform:scale(1)}
+.btn{transition:transform .25s ease}
+.comp .tilt{transition:transform .4s ease;transform-style:preserve-3d;will-change:transform}
+.lb img{transition:transform .3s ease;cursor:zoom-in}
+.lb img.zoom{transform:scale(1.8);cursor:zoom-out}
+@media(pointer:coarse){.cur{display:none}}
+@media(prefers-reduced-motion:reduce){.mast span i,.ph.in{animation:none}.strip figure,.strip figure img,.comp .tilt{transition:none}.prog{display:none}}
 </style>
 </head>
 <body>
+<div class="prog" id="prog"></div>
+<div class="cur" id="cur" aria-hidden="true">View</div>
 <nav>
   <div class="wrap">
     <a class="mark" href="#top">Jessica<i>.</i></a>
@@ -167,7 +186,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 
 <section class="comp" id="card">
   <div class="wrap">
-    <img src="img/profile.jpg" alt="Close-up profile of Jessica in a white jacket and gold chain">
+    <img class="tilt" src="img/profile.jpg" alt="Close-up profile of Jessica in a white jacket and gold chain">
     <div>
       <h2>Comp card</h2>
       <p style="font-size:17px;color:#4b4341">Everything a casting team asks for first.</p>
@@ -267,7 +286,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
   </div></section>`).join("");
   const lb = document.getElementById("lb"), im = document.getElementById("lbimg"), cap = document.getElementById("lbcap");
   let cur = 0, last = null;
-  const show = i => {cur = (i + all.length) % all.length; im.src = all[cur].src; im.alt = all[cur].alt; cap.textContent = `${all[cur].alt} · ${cur + 1} / ${all.length}`;};
+  const show = i => {im.classList.remove("zoom"); cur = (i + all.length) % all.length; im.src = all[cur].src; im.alt = all[cur].alt; cap.textContent = `${all[cur].alt} · ${cur + 1} / ${all.length}`;};
   const close = () => {lb.classList.remove("on"); document.body.style.overflow = ""; last && last.focus();};
   document.getElementById("chapters").addEventListener("click", e => {
     const b = e.target.closest(".ph"); if (!b) return;
@@ -294,6 +313,52 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
   };
   const mastRO = new ResizeObserver(fit); mastRO.observe(mast.parentElement);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+  // --- interactive layer ---
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches, fine = matchMedia("(pointer: fine)").matches;
+  // masthead letters rise in
+  const ms = mast.firstElementChild; ms.innerHTML = [...ms.textContent].map((ch, k) => `<i style="animation-delay:${k * 70}ms">${esc(ch)}</i>`).join("");
+  // scroll progress
+  const prog = document.getElementById("prog");
+  const onScroll = () => {const h = document.documentElement; prog.style.transform = `scaleX(${h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)})`;};
+  addEventListener("scroll", onScroll, {passive:true}); onScroll();
+  // filmstrip: hover parallax + click opens viewer
+  const strip = document.querySelector(".strip"), figs = [...strip.querySelectorAll("figure")];
+  if (fine && !still) {
+    strip.addEventListener("mousemove", e => {const r = strip.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      figs.forEach((f, k) => {const d = (k - 2) * 4; f.style.transform = `translate(${x * d}px, ${y * 10}px)`; f.querySelector("img").style.transform = `scale(1.06) translate(${-x * 10}px, ${-y * 10}px)`;});});
+    strip.addEventListener("mouseleave", () => figs.forEach(f => {f.style.transform = ""; f.querySelector("img").style.transform = "";}));
+  }
+  figs.forEach(f => f.addEventListener("click", () => {const src = f.querySelector("img").getAttribute("src"); const i = all.findIndex(a => a.src === src); if (i > -1) {last = f; show(i); lb.classList.add("on"); document.body.style.overflow = "hidden";}}));
+  // custom "View" cursor over photos
+  const cursorEl = document.getElementById("cur");
+  if (fine) {
+    addEventListener("mousemove", e => {cursorEl.style.left = e.clientX + "px"; cursorEl.style.top = e.clientY + "px";
+      cursorEl.classList.toggle("on", !!e.target.closest(".ph, .strip figure") && !lb.classList.contains("on"));}, {passive:true});
+  }
+  // photos lift in as they enter
+  if (!still && "IntersectionObserver" in window) {
+    const phIO = new IntersectionObserver(es => es.forEach(en => {if (en.isIntersecting) {en.target.classList.add("in"); phIO.unobserve(en.target);}}), {rootMargin:"0px 0px -8% 0px"});
+    document.querySelectorAll(".ph").forEach(p => phIO.observe(p));
+    // highlight current chapter in the index
+    const links = [...document.querySelectorAll("#idx a")];
+    const chIO = new IntersectionObserver(es => es.forEach(en => {if (en.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id));}), {rootMargin:"-45% 0px -50% 0px"});
+    document.querySelectorAll(".chap, #ugc").forEach(c => chIO.observe(c));
+  }
+  // magnetic buttons
+  if (fine && !still) document.querySelectorAll(".btn").forEach(b => {
+    b.addEventListener("mousemove", e => {const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px, ${(e.clientY - r.top - r.height / 2) * .25}px)`;});
+    b.addEventListener("mouseleave", () => b.style.transform = "");
+  });
+  // 3D tilt on comp card photo
+  const tilt = document.querySelector(".tilt");
+  if (fine && !still && tilt) {
+    tilt.addEventListener("mousemove", e => {const r = tilt.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      tilt.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.02)`;});
+    tilt.addEventListener("mouseleave", () => tilt.style.transform = "");
+  }
+  // tap/click to zoom inside the viewer; reset zoom on change
+  im.addEventListener("click", e => {e.stopPropagation(); im.classList.toggle("zoom");});
   const toast = document.getElementById("toast");
   const say = t => {toast.textContent = t; toast.style.display = "block"; clearTimeout(say.t); say.t = setTimeout(() => toast.style.display = "none", 2200);};
   const copy = async (text, ok) => {try {await navigator.clipboard.writeText(text); say(ok);} catch (err) {say("Copy blocked here. Select the text instead.");}};
