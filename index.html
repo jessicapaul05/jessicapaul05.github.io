@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jessica Portfolio</title>
+<meta name="description" content="Jessica, model and content creator in Bengaluru. Editorial, lifestyle, glam, ethnic and UGC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,800;1,6..96,500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion: a model agency book, hushed luxury, the photos lead
+   IDEA a fashion magazine issue about one person: masthead name, contact-sheet filmstrip, comp card, chapters
+   PICTURE the filmstrip of five frames under a full-width Bodoni masthead, cover portrait tallest in the middle
+   COLOUR night ink ground, ivory text, her red dress red as the single accent, warm paper for the comp card
+   TYPE Bodoni Moda 800 for masthead and chapter titles, Manrope for everything read
+   LAYOUT laptop: masthead across, filmstrip beneath, chapters with sticky titles left and photos right; phone: masthead, swipeable strip, single column */
+:root{--ink:#0e0c0d;--ink2:#171415;--ivory:#f4efe9;--mute:#a49b97;--line:#2b2627;--red:#e0243a;--paper:#f4efe9;--pink:#1d1718}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px;color-scheme:dark}
+body{margin:0;background:var(--ink);color:var(--ivory);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 max(4vw,16px)}
+h1,h2,h3{font-family:"Bodoni Moda",Didot,Georgia,serif;margin:0;line-height:1;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+.mute{color:var(--mute)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+nav{position:sticky;top:0;z-index:30;background:rgba(14,12,13,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;flex-wrap:wrap}
+.mark{font-family:"Bodoni Moda",serif;font-weight:800;font-size:22px;text-decoration:none;letter-spacing:.02em}
+.mark i{color:var(--red);font-style:normal}
+.nl{display:flex;gap:2px;flex-wrap:wrap}
+.nl a{text-decoration:none;font-size:15px;padding:10px 12px;border-radius:999px;color:var(--mute)}
+.nl a:hover{color:var(--ivory)}
+.nl a.book{background:var(--red);color:#fff;font-weight:700;padding:10px 18px}
+.hero{padding:clamp(20px,3vw,40px) 0 0}
+.meta{display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;font-size:15px}
+.avail{display:inline-flex;align-items:center;gap:8px}
+.avail::before{content:"";width:8px;height:8px;border-radius:50%;background:#3ccf7a;box-shadow:0 0 0 4px rgba(60,207,122,.18)}
+.mast span{display:inline-block}
+.mast{font-weight:800;font-size:clamp(70px,18.4vw,300px);line-height:.78;letter-spacing:-.035em;margin:clamp(14px,2vw,24px) 0 clamp(18px,2.5vw,32px);text-transform:uppercase;white-space:nowrap;text-align:center}
+.strip{display:grid;grid-template-columns:1fr 1fr 1.45fr 1fr 1fr;gap:clamp(8px,1.2vw,16px);align-items:end}
+.strip figure{margin:0;position:relative;border-radius:4px;overflow:hidden;background:var(--ink2)}
+.strip img{width:100%;height:100%;object-fit:cover}
+.strip .a{aspect-ratio:3/4.2}
+.strip .b{aspect-ratio:3/4.8}
+.strip .c{aspect-ratio:2/3}
+.strip figcaption{position:absolute;left:10px;bottom:10px;font-size:13px;font-weight:700;background:rgba(14,12,13,.78);padding:4px 10px;border-radius:999px}
+.under{display:flex;justify-content:space-between;align-items:end;gap:20px 40px;flex-wrap:wrap;padding:clamp(24px,3vw,40px) 0 clamp(36px,5vw,64px)}
+.under p{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(22px,2.6vw,30px);line-height:1.25;max-width:30ch}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;border:1.5px solid var(--ivory);text-decoration:none;font-weight:700;font-size:15px;background:none;cursor:pointer}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.dark{border-color:var(--ink);color:var(--ink)}
+.tick{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;border-block:1px solid #b81a2e}
+.tick div{display:inline-flex;gap:40px;padding:14px 0;font-family:"Bodoni Moda",serif;font-size:clamp(20px,2.4vw,28px);font-style:italic;animation:run 38s linear infinite}
+.tick span::after{content:"✦";font-style:normal;font-size:.6em;margin-left:40px;vertical-align:middle}
+@keyframes run{to{transform:translateX(-50%)}}
+.comp{background:var(--paper);color:var(--ink)}
+.comp .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:center;padding-block:clamp(44px,6vw,96px)}
+.comp img{border-radius:4px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.comp h2{font-size:clamp(40px,5.4vw,68px);margin-bottom:8px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1.5px solid var(--ink);margin:24px 0}
+.stats div{padding:14px 0;border-bottom:1px solid #d6ccc6;display:grid;gap:2px}
+.stats div:nth-child(odd){padding-right:16px}
+.stats dt{font-size:13px;color:#6d6360}
+.stats dd{margin:0;font-weight:700;font-size:18px}
+.idx{position:sticky;top:60px;z-index:20;background:rgba(14,12,13,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.idx .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.idx a{flex:none;text-decoration:none;font-size:15px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;color:var(--mute)}
+.idx a:hover{color:var(--ivory);border-color:var(--mute)}
+.chap{border-bottom:1px solid var(--line)}
+.chap .wrap{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:clamp(20px,4vw,64px);padding-block:clamp(44px,6vw,96px)}
+.ct{position:sticky;top:140px;align-self:start;display:grid;gap:14px}
+.ct h2{font-size:clamp(44px,5.6vw,80px)}
+.ct h2 em{color:var(--red);font-style:italic;font-weight:500}
+.ct p{font-size:17px;max-width:34ch}
+.ct .n{font-size:14px;color:var(--mute)}
+.ph-grid{columns:2;column-gap:clamp(10px,1.4vw,18px)}
+.ph{break-inside:avoid;margin:0 0 clamp(10px,1.4vw,18px);display:block;width:100%;padding:0;border:0;background:var(--ink2);border-radius:4px;overflow:hidden;cursor:zoom-in;position:relative}
+.ph img{width:100%;height:auto;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.ph:hover img{transform:scale(1.035)}
+.ph span{position:absolute;left:10px;bottom:10px;font-size:13px;background:rgba(14,12,13,.78);padding:3px 10px;border-radius:999px;opacity:0;transition:opacity .3s}
+.ph:hover span,.ph:focus-visible span{opacity:1}
+.ugc .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,80px);align-items:center;padding-block:clamp(44px,6vw,96px)}
+.phone{justify-self:center;width:min(300px,78vw);aspect-ratio:9/19;border-radius:42px;background:#050405;padding:12px;box-shadow:0 0 0 1.5px #3a3335,0 30px 60px -20px rgba(224,36,58,.35);position:relative}
+.screen{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden}
+.screen img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.screen .top{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:90px;height:24px;border-radius:999px;background:#050405}
+.screen .cap{position:absolute;left:12px;right:52px;bottom:16px;font-size:13px;line-height:1.4;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.screen .cap b{display:block;font-size:14px}
+.screen .side{position:absolute;right:10px;bottom:20px;display:grid;gap:14px}
+.screen .side i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.22);display:block}
+.ugc h2{font-size:clamp(40px,5.4vw,72px);margin-bottom:16px}
+.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}
+.svc div{border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:4px;align-content:start;background:var(--ink2)}
+.svc b{font-size:17px}
+.svc span{font-size:15px;color:var(--mute)}
+.about{background:var(--pink)}
+.about .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,80px);align-items:center;padding-block:clamp(44px,6vw,96px)}
+.about h2{font-size:clamp(40px,5.4vw,72px);margin-bottom:20px}
+.about .lead{font-family:"Bodoni Moda",serif;font-size:clamp(21px,2.3vw,27px);line-height:1.35;margin-bottom:18px}
+.about .body{font-size:17px;max-width:58ch;color:#d8cfca}
+.about img{border-radius:4px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chips span{border:1px solid #4a4042;border-radius:999px;padding:6px 14px;font-size:15px}
+.contact{background:var(--red);color:#fff}
+.contact .wrap{padding-block:clamp(48px,7vw,110px);display:grid;gap:clamp(24px,3vw,40px)}
+.contact h2{font-size:clamp(56px,11vw,170px);line-height:.85;letter-spacing:-.035em}
+.contact h2 em{font-weight:500}
+.rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.row{background:rgba(0,0,0,.16);border-radius:6px;padding:18px;display:grid;gap:10px;align-content:space-between}
+.row small{font-size:13px;opacity:.85;display:block}
+.row strong{font-size:19px;overflow-wrap:anywhere}
+.row .btn{border-color:#fff;min-height:44px;justify-self:start}
+footer{padding:26px 0;font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.lb{position:fixed;inset:0;z-index:60;background:rgba(8,6,7,.96);display:none;align-items:center;justify-content:center;padding:60px 16px}
+.lb.on{display:flex}
+.lb img{max-height:100%;max-width:100%;object-fit:contain;border-radius:3px}
+.lb button{position:absolute;min-width:48px;min-height:48px;border-radius:999px;border:0;background:rgba(255,255,255,.12);font-size:22px;cursor:pointer}
+.lb .x{top:12px;right:12px}
+.lb .pv{left:12px;top:50%;transform:translateY(-50%)}
+.lb .nx{right:12px;top:50%;transform:translateY(-50%)}
+.lb .cp{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:14px;color:#cfc6c2}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ivory);color:var(--ink);padding:10px 18px;border-radius:999px;font-weight:700;font-size:15px;z-index:70;display:none}
+@media(max-width:900px){.chap .wrap,.comp .wrap,.ugc .wrap,.about .wrap{grid-template-columns:minmax(0,1fr)}.ct{position:static}.about img{max-height:560px;order:-1}.comp img{max-height:520px}.rows{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;align-items:stretch;padding-bottom:6px;scrollbar-width:none}.strip figure{flex:0 0 64vw;scroll-snap-align:center}.strip .a,.strip .b,.strip .c{aspect-ratio:3/4}.strip .c{order:-1}}
+@media(max-width:600px){.nl a:not(.book){padding:10px 7px}.svc{grid-template-columns:minmax(0,1fr)}.stats dd{font-size:16px}.ph-grid{column-gap:10px}.ph{margin-bottom:10px}.ph span{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tick div{animation:none}.ph img{transition:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#top">Jessica<i>.</i></a>
+    <div class="nl">
+      <a href="#work">Work</a>
+      <a href="#ugc">UGC</a>
+      <a href="#about">About</a>
+      <a class="book" href="#contact">Book</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="meta"><span class="avail">Available for bookings</span><span class="mute">Model &amp; content creator · Bengaluru</span></div>
+    <h1 class="mast"><span>Jessica</span></h1>
+    <div class="strip">
+      <figure class="a"><img src="img/corridor.jpg" alt="Leaning on a corridor wall in black and wide denim"><figcaption>Editorial</figcaption></figure>
+      <figure class="b"><img src="img/laugh.jpg" alt="Laughing with a hand in her hair, red dress"><figcaption>Beauty</figcaption></figure>
+      <figure class="c"><img src="img/cover.jpg" alt="Jessica in a red dress, smiling, chin on her hand"></figure>
+      <figure class="b"><img src="img/coffee.jpg" alt="Laughing while stirring a coffee"><figcaption>Lifestyle</figcaption></figure>
+      <figure class="a"><img src="img/window.jpg" alt="Looking out of a tall barred window"><figcaption>Mood</figcaption></figure>
+    </div>
+    <div class="under">
+      <p>A face that goes from moody editorial to a laugh you can sell coffee with.</p>
+      <div class="btns"><a class="btn red" href="#work">See the book</a><a class="btn" href="#card">Comp card</a></div>
+    </div>
+  </div>
+</header>
+
+<div class="tick" aria-hidden="true"><div id="tick"></div></div>
+
+<section class="comp" id="card">
+  <div class="wrap">
+    <img src="img/profile.jpg" alt="Close-up profile of Jessica in a white jacket and gold chain">
+    <div>
+      <h2>Comp card</h2>
+      <p style="font-size:17px;color:#4b4341">Everything a casting team asks for first.</p>
+      <dl class="stats" id="stats"></dl>
+      <div class="btns"><button class="btn dark" type="button" id="copyStats">Copy details for WhatsApp</button><a class="btn red" href="#contact">Book Jessica</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="idx" id="work"><div class="wrap" id="idx"></div></div>
+<div id="chapters"></div>
+
+<section class="ugc" id="ugc">
+  <div class="wrap">
+    <div class="phone" aria-hidden="true">
+      <div class="screen">
+        <img src="img/coffee.jpg" alt="">
+        <div class="top"></div>
+        <div class="side"><i></i><i></i><i></i></div>
+        <div class="cap"><b>@jessica.inframe</b>The iced latte I keep coming back for</div>
+      </div>
+    </div>
+    <div>
+      <h2>Content that sells, made to feel real</h2>
+      <p style="font-size:17px;max-width:52ch" class="mute">Vertical videos and photos for reels, ads and product pages. Natural delivery in Hindi, English or Tamil, with the product in frame in the first three seconds.</p>
+      <div class="svc">
+        <div><b>Unboxing &amp; first look</b><span>Honest reactions, clean product shots.</span></div>
+        <div><b>Get ready with me</b><span>Skincare, makeup, hair and outfits.</span></div>
+        <div><b>Reviews &amp; demos</b><span>Talk-to-camera and problem-to-solution ads.</span></div>
+        <div><b>Café &amp; lifestyle</b><span>In-the-moment content for food and everyday brands.</span></div>
+      </div>
+      <a class="btn red" href="#contact">Request a quote</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <h2>About Jessica</h2>
+      <p class="lead">Twenty-one, Bengaluru-based, and happiest when a shoot feels real.</p>
+      <p class="body">I move easily between moody editorial light and warm, everyday moments, and I take direction quickly. Brands get a face people trust and a creator who understands what makes someone stop scrolling. I speak Hindi, English and Tamil, and I'm happy to travel for work across India.</p>
+      <div class="chips"><span>Western</span><span>Saree</span><span>Ethnic &amp; festive</span><span>Bold western</span><span>Bold saree</span><span>Cocktail</span><span>Partywear</span><span>Lifestyle</span><span>Product &amp; UGC</span></div>
+    </div>
+    <img src="img/plant.jpg" alt="Jessica smiling warmly in a red dress">
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's make <em>something.</em></h2>
+    <div class="rows">
+      <div class="row"><div><small>Email</small><strong>jessylyf05@gmail.com</strong></div><button class="btn" type="button" id="copyMail">Copy email</button></div>
+      <div class="row"><div><small>Instagram</small><strong>@jessica.inframe</strong></div><a class="btn" href="https://www.instagram.com/jessica.inframe/" target="_blank" rel="noopener">Open profile</a></div>
+      <div class="row"><div><small>Based in</small><strong>Bengaluru · travels India-wide</strong></div><a class="btn" href="#card">See comp card</a></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Jessica</span><span>Editorial series photographed by GuyWithCamera</span></div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lbimg" alt="">
+  <button class="x" type="button" aria-label="Close">✕</button>
+  <button class="pv" type="button" aria-label="Previous">‹</button>
+  <button class="nx" type="button" aria-label="Next">›</button>
+  <div class="cp" id="lbcap"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+{
+  // Comp card details. Add bust, waist and hips here when measured.
+  const stats = [["Height","5'3\" · 160 cm"],["Shoe","UK 6"],["Hair","Black, faded red"],["Age","21"],["Languages","Hindi, English, Tamil"],["Based in","Bengaluru"],["Travel","India-wide"],["Measurements","On request"]];
+  // Chapters. To add a new style, copy a block and change the fields.
+  const chapters = [
+    {id:"editorial", title:"Editorial", accent:"in black & denim", note:"Strong lines, window light and empty corridors. Fashion-led and moody.", photos:[
+      ["walk","Walking toward camera"],["shutter","Against a shutter, eyes to camera"],["corridor","Corridor lean"],["crouch","Seated against a shutter"],["window","At the window"]]},
+    {id:"lifestyle", title:"Lifestyle", accent:"& UGC", note:"Natural, warm and in the moment. The kind of frame brands post.", photos:[
+      ["camera","With a camera at a café"],["coffee","Laughing over coffee"],["reading","Reading a note at the counter"],["cafe","Café portrait"]]},
+    {id:"glam", title:"Glam", accent:"& beauty", note:"Close-ups and party looks in red.", photos:[
+      ["seated","Red dress, seated"],["laugh","Laughing, hand in hair"],["chin","Chin up by the café glass"],["cover","Chin on hand"]]},
+    {id:"ethnic", title:"Ethnic", accent:"& natural", note:"Traditional wear and a fresh, everyday face.", photos:[
+      ["ethnic","Pink mirror-work outfit"],["salon","Fresh face with bangs"]]}
+  ];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  document.getElementById("stats").innerHTML = stats.map(s => `<div><dt>${esc(s[0])}</dt><dd>${esc(s[1])}</dd></div>`).join("");
+  const words = ["Editorial","Lifestyle","UGC","Glam","Ethnic","Bengaluru","Hindi · English · Tamil","Available to travel"];
+  const half = words.map(w => `<span>${esc(w)}</span>`).join("");
+  document.getElementById("tick").innerHTML = half + half;
+  document.getElementById("idx").innerHTML = chapters.map(c => `<a href="#${esc(c.id)}">${esc(c.title)} <span class="mute">${c.photos.length}</span></a>`).join("") + `<a href="#ugc">UGC</a>`;
+  const all = [];
+  document.getElementById("chapters").innerHTML = chapters.map(c => `<section class="chap" id="${esc(c.id)}"><div class="wrap">
+    <div class="ct"><h2>${esc(c.title)} <em>${esc(c.accent)}</em></h2><p class="mute">${esc(c.note)}</p><span class="n">${c.photos.length} photographs</span></div>
+    <div class="ph-grid">${c.photos.map(p => {all.push({src:`img/${p[0]}.jpg`,alt:p[1]}); const i = all.length - 1;
+      return `<button class="ph" type="button" data-i="${i}" aria-label="View: ${esc(p[1])}"><img loading="lazy" src="img/${esc(p[0])}.jpg" alt="${esc(p[1])}"><span>${esc(p[1])}</span></button>`}).join("")}</div>
+  </div></section>`).join("");
+  const lb = document.getElementById("lb"), im = document.getElementById("lbimg"), cap = document.getElementById("lbcap");
+  let cur = 0, last = null;
+  const show = i => {cur = (i + all.length) % all.length; im.src = all[cur].src; im.alt = all[cur].alt; cap.textContent = `${all[cur].alt} · ${cur + 1} / ${all.length}`;};
+  const close = () => {lb.classList.remove("on"); document.body.style.overflow = ""; last && last.focus();};
+  document.getElementById("chapters").addEventListener("click", e => {
+    const b = e.target.closest(".ph"); if (!b) return;
+    last = b; show(+b.dataset.i); lb.classList.add("on"); document.body.style.overflow = "hidden"; lb.querySelector(".x").focus();
+  });
+  lb.querySelector(".x").onclick = close;
+  lb.querySelector(".pv").onclick = () => show(cur - 1);
+  lb.querySelector(".nx").onclick = () => show(cur + 1);
+  lb.addEventListener("click", e => {if (e.target === lb) close();});
+  let tx = null;
+  lb.addEventListener("touchstart", e => {tx = e.touches[0].clientX;}, {passive:true});
+  lb.addEventListener("touchend", e => {if (tx === null) return; const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) show(cur + (d < 0 ? 1 : -1)); tx = null;});
+  document.addEventListener("keydown", e => {
+    if (!lb.classList.contains("on")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowRight") show(cur + 1);
+    if (e.key === "ArrowLeft") show(cur - 1);
+  });
+  const mast = document.querySelector(".mast");
+  const fit = () => {
+    mast.style.fontSize = "";
+    const w = mast.clientWidth, sw = mast.firstElementChild.offsetWidth, fs = parseFloat(getComputedStyle(mast).fontSize);
+    if (sw > 0) mast.style.fontSize = Math.min(fs * w / sw * 0.99, 340) + "px";
+  };
+  const mastRO = new ResizeObserver(fit); mastRO.observe(mast.parentElement);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  const toast = document.getElementById("toast");
+  const say = t => {toast.textContent = t; toast.style.display = "block"; clearTimeout(say.t); say.t = setTimeout(() => toast.style.display = "none", 2200);};
+  const copy = async (text, ok) => {try {await navigator.clipboard.writeText(text); say(ok);} catch (err) {say("Copy blocked here. Select the text instead.");}};
+  document.getElementById("copyMail").addEventListener("click", () => copy("jessylyf05@gmail.com", "Email copied"));
+  document.getElementById("copyStats").addEventListener("click", () => copy(
+    "JESSICA – Model & Content Creator\n" + stats.map(s => `${s[0]}: ${s[1]}`).join("\n") +
+    "\nInstagram: @jessica.inframe\nEmail: jessylyf05@gmail.com", "Details copied"));
+}
+</script>
+</body>
+</html>
