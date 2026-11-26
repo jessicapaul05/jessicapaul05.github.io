@@ -173,7 +173,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <figure class="b"><img src="img/laugh.jpg" alt="Laughing with a hand in her hair, red dress"><figcaption>Beauty</figcaption></figure>
       <figure class="c"><img src="img/cover.jpg" alt="Jessica in a red dress, smiling, chin on her hand"></figure>
       <figure class="b"><img src="img/coffee.jpg" alt="Laughing while stirring a coffee"><figcaption>Lifestyle</figcaption></figure>
-      <figure class="a"><img src="img/window.jpg" alt="Looking out of a tall barred window"><figcaption>Mood</figcaption></figure>
+      <figure class="a"><img src="img/redwall-full.jpg" alt="Full length in a black saree by a carved pillar"><figcaption>Saree</figcaption></figure>
     </div>
     <div class="under">
       <p>A face that goes from moody editorial to a laugh you can sell coffee with.</p>
@@ -263,18 +263,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
   const stats = [["Height","5'3\" · 160 cm"],["Shoe","UK 6"],["Hair","Black, faded red"],["Age","21"],["Languages","Hindi, English, Tamil"],["Based in","Bengaluru"],["Travel","India-wide"],["Measurements","On request"]];
   // Chapters. To add a new style, copy a block and change the fields.
   const chapters = [
+    {id:"saree", title:"Saree", accent:"& heritage", note:"Black-and-gold saree with stacked bangles and a statement ear cuff, shot in a heritage palace.", photos:[
+      ["redwall-full","Full length by a carved pillar"],["redwall-down","Looking down against the red wall"],["profile-cuff","Profile with the gold ear cuff"],["palace-stairs","Descending the palace staircase"],["hair-up","Hands in hair by the pillars"],["bangles","Stacked bangles framing the eyes"],["look-down","Under the palace balconies"],["pillar-smile","Leaning on the colonnade, smiling"],["arch-window","Framed by a carved palace arch"],["wall-look","Hand in hair, glancing away"],["back-hands","Hands in hair, tie-back detail"],["candid-drape","Adjusting the pallu"]]},
     {id:"editorial", title:"Editorial", accent:"in black & denim", note:"Strong lines, window light and empty corridors. Fashion-led and moody.", photos:[
-      ["walk","Walking toward camera"],["shutter","Against a shutter, eyes to camera"],["corridor","Corridor lean"],["crouch","Seated against a shutter"],["window","At the window"]]},
+      ["walk","Walking toward camera"],["shutter","Against a shutter, eyes to camera"],["corridor","Corridor lean"],["window","At the window"]]},
     {id:"lifestyle", title:"Lifestyle", accent:"& UGC", note:"Natural, warm and in the moment. The kind of frame brands post.", photos:[
       ["camera","With a camera at a café"],["coffee","Laughing over coffee"],["reading","Reading a note at the counter"],["cafe","Café portrait"]]},
     {id:"glam", title:"Glam", accent:"& beauty", note:"Close-ups and party looks in red.", photos:[
-      ["seated","Red dress, seated"],["laugh","Laughing, hand in hair"],["chin","Chin up by the café glass"],["cover","Chin on hand"]]},
+      ["laugh","Laughing, hand in hair"],["seated","Red dress, seated"],["chin","Chin up by the café glass"]]},
     {id:"ethnic", title:"Ethnic", accent:"& natural", note:"Traditional wear and a fresh, everyday face.", photos:[
       ["ethnic","Pink mirror-work outfit"],["salon","Fresh face with bangs"]]}
   ];
   const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   document.getElementById("stats").innerHTML = stats.map(s => `<div><dt>${esc(s[0])}</dt><dd>${esc(s[1])}</dd></div>`).join("");
-  const words = ["Editorial","Lifestyle","UGC","Glam","Ethnic","Bengaluru","Hindi · English · Tamil","Available to travel"];
+  const words = ["Editorial","Lifestyle","UGC","Glam","Saree & heritage","Ethnic","Bengaluru","Hindi · English · Tamil","Available to travel"];
   const half = words.map(w => `<span>${esc(w)}</span>`).join("");
   document.getElementById("tick").innerHTML = half + half;
   document.getElementById("idx").innerHTML = chapters.map(c => `<a href="#${esc(c.id)}">${esc(c.title)} <span class="mute">${c.photos.length}</span></a>`).join("") + `<a href="#ugc">UGC</a>`;
